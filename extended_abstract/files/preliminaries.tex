@@ -1,0 +1,288 @@
+\documentclass[notas.tex]{subfiles} 				%tamanho das paginas: a4
+
+\begin{document}
+\section{Preliminaries} \label{sec_prelim}
+
+\subsection{Geometric quantization} \label{sec_gq}
+
+\subsubsection{GQ without half-form correction} \label{sec_gq_without_hf}
+
+\begin{defn}
+	Let $(\mfld, \sform)$ be a symplectic manifold. A complex Hermitian line bundle with connection $(L, \hip{\cdot}{\cdot}, \covdsymb)$ is said to be a \emph{prequantum line bundle} if $\Omega = i\frac{\sform}{\hbar}$, where $\Omega$ is the curvature 2-form of the connection.
+\end{defn}
+\begin{thm} \label{thm_quantizable_mfld}
+	A symplectic manifold $(\mfld, \sform)$ admits a prequantum line bundle if and only if $\left[ \frac{\sform}{2\pi \hbar} \right]$ is integral, i.e. $\left[  \frac{\sform}{2\pi\hbar} \right] \in H^2(\mfld, \ints)$. In that case, $(\mfld,\sform)$ is said to be \emph{quantizable}.
+\end{thm}
+
+\begin{ex}
+	The cotangent bundle $(T^*\nfld, \sform)$ of a manifold $\nfld$ with the standard exact symplectic form $\sform = d \spot$ is quantizable.
+\end{ex}
+
+If $(L, \hip{\cdot}{\cdot}, \covdsymb)$ is a complex Hermitian line bundle with connection over a symplectic manifold $(\mfld, \sform)$, we define the maps $\inner{\cdot}{\cdot}: \sect(L) \times \sect(L) \to \cmplx \cup \{\infty\}$ and $\norm{\cdot}: \sect(L) \to \reals \cup \{\infty\}$ as $\inner{s_1}{s_2} := \int_\mfld \hip{s_1}{s_2}\frac{\sform^n}{n!}$ and $\norm{s} := \inner{s}{s}^{\frac{1}{2}}$,
+for $s_1, s_2, s \in \sect(L)$. When restricted to $\{s \in \sect(L): \inner{s}{s} < \infty \}$, these define a Hermitian inner product and a norm, respectively.
+\begin{defn}
+	A \emph{prequantization} of a symplectic manifold $(\mfld, \sform)$ is a choice of prequantum line bundle $(L, \hip{\cdot}{\cdot}, \covdsymb)$. The \emph{prequantum Hilbert space} is $\hilb := \close{\left \{s \in \sect(L): \norm{s} < \infty \right \}}^{\norm{\cdot}}$. For an observable $f \in C^\infty(\mfld;\cmplx)$, the corresponding \emph{prequantum operator} is $\prq{f} := i \hbar \covd{X_f} + f$.
+\end{defn}
+\begin{defn} \label{def_polarization}
+Let $(\mfld, \sform)$ be a symplectic manifold. A \emph{polarization} $\pol$ of $(\mfld,\sform)$ is a Lagrangian vector subbundle of $T\mfld^\cmplx$ such that, if $X, Y \in \sect(\pol)$, then $\lb{X}{Y} \in \sect(\pol)$, and such that $\dim \left( \pol(p) \cap \overline{\pol(p)} \right)$ is the same for all $p \in \mfld$.
+\end{defn}
+We focus on complex polarizations, which are polarizations satisfying $\pol \cap \overline{\pol} = \{0\}$. Given a symplectic manifold and a choice of prequantization, for $U \subseteq \mfld$ open, $s \in \sect(L)|_U$ is said to be \emph{polarized} (on $U$) if $\covd{X} \alpha = 0$ for all $X \in \sect(\overline \pol)|_U$. We denote the set of such sections as $\sect_\pol(L)|_U$, with $\sect_\pol(L):= \sect_\pol(L)|_\mfld$. The reduced Hilbert space is
+\begin{align} \label{eq_reduced_hilb}
+	\hilb_\pol := \close{\{\psi \in \sect_\pol(\lbund): \norm{s} < \infty, \; \forall X \in \Gamma(\overline{\pol})\}}^{\norm{\cdot}}.
+\end{align}
+Given a complex polarization $\pol$ we can uniquely define a bundle isomorphism $J_{\pol}: T\mfld^\cmplx \to T\mfld^\cmplx$ such that $J_\pol Z = i Z, \forall Z \in \sect(P)$ and $	J_\pol W = - i W,  \forall W \in \sect(\overline P)$.
+\begin{prop} \label{prop_cstruct_from_pol}
+	Let $\pol$ be a complex polarization on a symplectic manifold $(\mfld, \sform)$. Then $J_\pol$ defines a compatible complex structure on $(\mfld, \sform)$.
+\end{prop}
+\begin{defn} \label{def_kahler_polarization}
+	Let $\pol$ be a complex polarization on the symplectic manifold $(\mfld, \sform)$. We say that $\pol$ is a \emph{Kähler polarization} if $(\sform, J_\pol)$ is Kähler pair on $\mfld$.
+\end{defn}
+
+\begin{prop} \label{prop_polarized_holo_sections}
+	Let $(L, \hip{\cdot}{\cdot}, \covdsymb)$ be a complex Hermitian line bundle with connection over a Kähler manifold $(\mfld, \sform, \metric, J)$ with corresponding Kähler polarization $\pol$. Let $s_0$ be a unitary section on an open set $U$. Let $\kpot \in C^\infty(U)$ be a local Kähler potential defined on $U$. Then, the section $s_\kpot = e^{-\kpot/\hbar} s_0$ is such that $\sect_\pol(L)\big|_U = \{\psi s_\kpot: \psi \text{ is $J$-holomorphic on $U$}\}$.
+\end{prop}
+\begin{defn}\label{def_observable_quantizable}
+	Let $\pol$ be a polarization on the quantizable symplectic manifold $(\mfld, \sform)$. Let $(L, \inner{\cdot}{\cdot}, \covdsymb)$ be a choice of prequantization, and let $f \in C^\infty(\mfld)$. $f$ is said to be \emph{quantizable} with respect to $\pol$ if $\prq{f}(\hilb_\pol) \subseteq \hilb_\pol$.
+\end{defn}
+
+\subsubsection{GQ with half-form correction} \label{sec_gq_with_hf}
+
+\begin{defn}
+	Let $\pol$ be a complex polarization on a symplectic manifold $(\mfld, \sform)$. The (complex) \emph{canonical bundle} $\canb_\pol$ of $\pol$ is the complex line bundle whose sections are the differential $n$-forms $\alpha \in \dform^n(\mfld; \cmplx)$ which satisfy $\contr{X}{\alpha} = 0$ for all $X \in \sect(\overline \pol)$.
+\end{defn}
+\begin{prop} \label{prop_lied_preservation}
+	Let $\pol$ be a polarization on the symplectic manifold $(\mfld,\sform)$. Let $X \in \vf(\mfld)$ be a vector field preserving $\pol$ and $\alpha \in \sect(\canb_\pol)$. Then $\lied{X}\alpha \in \sect(\canb_\pol)$, and if $\contr{X} d \alpha = 0$, then $\contr{X} d \left( \lied{X} \alpha \right) = 0$.
+\end{prop}
+It turns out that $\covd{X}\alpha := \contr{X} d \alpha$ defines a partial connection along $\overline \pol$ which is equal to $\lied{X} \alpha$. We define polarized sections similarly to the case of connections.
+\begin{rem}
+	Considering the complex structure $J_\pol$ on $\mfld$, the smooth sections of $\canb_\pol$ are the $(n,0)$-forms on $\mfld$ and the polarized sections $\sect_\pol(\canb_\pol)$ are the holomorphic $(n,0)$-forms on $\mfld$.
+\end{rem}
+
+\begin{defn}
+	A \emph{square root of $\canb_\pol$} is a complex line bundle $\sqrtb_\pol$ over $\mfld$ along with an isomorphism $\phi: \sqrtb_\pol \otimes \sqrtb_\pol \to \canb_\pol$. 
+\end{defn}
+
+The partial connection and the Lie derivative on $\kbund_\pol$ can be used to define a partial connection and a notion of Lie derivative on $\sqrtb_\pol$ in a natural way. We then say that $s \in \sect(\sqrtb_\pol)$ is polarized if, for all $X \in \sect(\overline\pol)$, $\covd{X} s = 0$, and define a corresponding tensor product partial connection on $L \otimes \sqrtb_\pol$. Moreover, in the case of complex polarizations, $\sqrtb_\pol$ admits a natural Hermitian structure, which in turn allows us to define a tensor Hermitian structure on $L \otimes \sqrtb$ since $L$ has a Hermitian structure by hypothesis.
+\begin{defn}
+	Let $\pol$ be a complex polarization on a quantizable symplectic manifold $(\mfld, \sform)$ and let $(L, \hip{\cdot}{\cdot}, \covdsymb)$ be a prequantization of this manifold. Let $\sqrtb_\pol$ be a square root of the canonical bundle $\canb_\pol$.  Then, the \emph{half-form-corrected Hilbert space} for a complex polarization $\pol$ on $\mfld$ is
+	\begin{align} \label{eq_reduced_hilb_whf}
+		\hilb^\text{hf}_\pol := \close{\{\psi \in \sect_\pol(\lbund \otimes \sqrtb): \norm{\psi} < \infty, \; \forall X \in \Gamma(\overline{\pol})\}}^{\norm{\cdot}},
+	\end{align}
+	%where $\inner{s_1}{s_2}_{\text{hf}} := \int_\mfld \hip{s_1}{s_2}$ and $\norm{s}^2_\text{hf} := \int_\mfld \hip{s}{s}$, for $s_1, s_2, s \in \sect(L \otimes \sqrtb)$.
+\end{defn}
+% By an abuse of notation, we use the same notation for \eqref{eq_reduced_hilb} and \eqref{eq_reduced_hilb_whf}. It will be obvious from context whether we are using GQ with or without half-form correction.
+
+We say that $f \in C^\infty(\mfld; \cmplx)$ is \emph{quantizable with half form correction} whenever $X_f$ preserves $\overline \pol$.
+\begin{prop}
+	Let $\pol$ be a complex polarization on a quantizable symplectic manifold $(\mfld, \sform)$ and let $(L, \hip{\cdot}{\cdot}, \covdsymb)$ be a prequantization of this manifold. Let $\sqrtb_\pol$ be a square root of the canonical bundle $\canb_\pol$. Let $f \in C^\infty(\mfld; \cmplx)$ be such that $X_f$ preserves $\overline \pol$. Define the \emph{prequantization of} $f$ \emph{with half-form correction} as
+	\begin{align} \label{eq_prq_whf}
+		\prqhf{f}  s := (\prq{f}\tilde s)\otimes \nu + i \hbar \tilde s \otimes \lied{X_f}\nu,
+	\end{align}
+	where $s$ is locally written as $s = \tilde s \otimes \nu$, $\tilde s$ being a section of $L$ and $\nu$ a section of $\sqrtb_P$. Then $\prqhf{f} s$ does not depend on the choice of $\tilde s$ and $\nu$.
+\end{prop}
+
+\begin{rem} \label{rem_full_quantization}
+	Let $\pol$ be a polarization on a prequantizable symplectic manifold $(\mfld, \sform)$, along with a choice of prequantization. If an observable $f \in C^\infty(\mfld)$ is quantizable, we define its \emph{quantization} as 
+	\begin{align*}
+		\q{f} := \prqhf{f}.
+	\end{align*}
+	However, there are in general severe restrictions on the observables that are quantizable. One must deal with this on a case-by-case basis. We do the following: if $g \in C^\infty(\mfld; \cmplx)$ is an observable not preserving $\pol$, but $g = g(f_1,...,f_n)$ for some $f_1,...,f_n \in C^\infty(\mfld; \cmplx), n \in \nats$, all of which preserve the polarization, then assuming $\prq{f_1},...,\prq{f_n}$ commute, we take $\q{g} := g(\prq{f_1},...,\prq{f_n})$.
+\end{rem}
+
+\subsection{Complex flows and geodesics in the space of Kähler metrics} \label{sec_complex_flows}
+
+\subsubsection{Complexification of real analytic flows} 
+Here, we summarize part of the theory developed in \cite{mourao_complexified_2015}, which will be essential in order to change the geometry of the surfaces in \secref{sec_geometry_dependence}.
+
+\begin{defn}\label{def_lie_series}
+	For $\tau \in \cmplx$ and $X \in \vf^\ra(\mfld)$, we define the time-$\tau$ exponential of $X$ applied to $f \in C^\ra(\mfld)$ as the formal Lie series given by $e^{\tau X} \cdot f$.
+\end{defn}
+
+\begin{thm}[\hspace{1sp}\cite{mourao_complexified_2015}, Theorem 2.5] \label{thm_coordinate_evolution}
+Let $\mfld$ be a compact complex manifold with complex structure $J_0$ and $X \in \vf^\ra(\mfld)$. Let $(U, z_1,...,z_n)$ be a set of $J_0$-holomorphic coordinates containing $p \in \mfld$. Then, there exists a $T \in \reals^+$ such that, for every $\tau \in D_T = \{\tau \in \cmplx : \abs{\tau} < T\},$ the functions
+\[z_j^\tau = e^{\tau X} \cdot z_j, \qquad j = 1,...,n,\]
+define a new complex structure $J_\tau$ on some open neighborhood $V \subset U$ of $p$, with respect to which they form a set of local $J_\tau$-holomorphic coordinates on that neighborhood.
+\end{thm}
+
+% Finally, the next theorem states that there is a global complex structure under which the evolved coordinates are holomorphic and establishes the existence of a biholomorphism that represents the flow locally:
+
+\begin{thm}[\hspace{1sp}\cite{mourao_complexified_2015}, Theorem 2.6] \label{thm_complex_flow}
+Let $\mfld$ be a compact complex manifold with complex structure $J_0$ and $X\in\vf^\ra(\mfld)$. Then, there exists a $T \in \reals^+$ such that, for $\tau \in D_T=\{\tau \in \cmplx : \abs{\tau} < T\}$, there exists a global complex structure $\cstruct_\tau$ on $\mfld$ extending the complex structure given in local $\cstruct_\tau$-holomorphic charts by \thmref{thm_coordinate_evolution}, along with a unique biholomorphism
+\[
+\phi_\tau : (\mfld, \cstruct_\tau) \to (\mfld, J_0),
+\]
+which, on local $\cstruct_0$-holomorphic coordinates, acts as $e^{\tau X}$. This biholomorphism will be referred to as the \emph{complex-time flow} of X.
+\end{thm}
+\begin{rem}\label{rem_geometry_evolution}
+	One crucial aspect is that, although $\phi_\tau$ as in \thmref{thm_complex_flow} is a biholomorphism by construction, it is not necessarily a symplectomorphism. This implies that the Kähler pairs $(\sform, J_0)$ and $(\sform, J_\tau)$ will, in general, be nonequivalent. We will exploit this in \secref{sec_geometry_dependence} in order to change the Kähler structure of a surface.
+\end{rem}
+
+\subsubsection{Geodesics in the space of Kähler metrics} \label{sec_geodesics}
+
+Here, we will see that the change in the Kähler structure of a manifold induced by the complex-time flow of a Hamiltonian vector field, as in \remref{rem_geometry_evolution}, can also be seen as a geodesic in a space of Kähler structures on the manifold.
+
+\begin{defn}
+Given a differentiable manifold $\mfld$, we denote by 	$\kset(\mfld)$ the set of all compatible Kähler triples on $\mfld$.	
+\end{defn}
+
+By abuse of notation, we will treat Kähler triples intechangeably with Kähler pairs. As such, in what follows, we will omit the metric, writing $(\sform,\cstruct) \in \kset(\mfld)$.
+
+Given a symplectic form $\sform \in \dform^2(\mfld)$ on a manifold $\mfld$, we will consider the subset $\fcset(\sform, \cstruct) \subseteq \kset(\mfld)$ of compatible Kähler triples having complex structure $\cstruct$ and whose Kähler form lies in the same cohomology class as $\sform$, that is $\fcset(\mfld, \cstruct) = \{\alpha : (\alpha,J) \in \kset(\mfld), \, [\alpha] = [\sform]\}$.
+Assume, from here on, that $\mfld$ is compact. Defining the set 
+\begin{align*}
+	\fcpset(\sform, J) = \{u \in C^\infty(\mfld,\reals): (\sform + i \hd \ahd u, J) \in \kset(\mfld) \} 
+\end{align*}
+and defining, for $u \in C^\infty(\mfld)$, $\sform_u :=  \sform + i \hd \ahd u$, we can write $\fcset(\sform, \cstruct)$ as $\fcset(\sform, \cstruct) \cong \fcpset(\sform, \cstruct) / \reals$.
+\begin{rem}
+	Since $C^\infty(\mfld)$ is a Fréchet vector space, it is an infinite-dimensional manifold, and since $\fcpset(\sform, \cstruct)$ is an open subset of $C^\infty(\mfld)$, it is a Fréchet manifold modeled on the same space. We can thus perform the identification $T_u \fcpset(\sform, \cstruct) \cong C^\infty(\mfld)$.
+\end{rem}
+
+\begin{defn}
+	Given $F,G \in T_u \fcpset \cong C^\infty(\mfld)$, the \emph{Mabuchi metric} is defined as
+	\begin{align*}
+		\inner{F}{G}_u := \int_\mfld FG \, \frac{\sform_u^n}{n!},
+	\end{align*}
+\end{defn}
+% \begin{prop}
+% 	The geodesic equation corresponding to the Mabuchi metric is $\ddot u_t = \frac{1}{2}\norm{\grad^{u_t}\dot u_t}^2_{u_t}$, where $\grad^{u_t}$ and $\norm{\cdot}_{u_t}$ are the usual gradient and norm, calculated using the Riemannian metric $g_{u_t}$ on $\mfld$ corresponding to the Kähler pair $(\sform_{u_t},\cstruct)$.
+% \end{prop}
+
+\begin{rem} \label{rem_symplectic_picture}
+	Going back to \remref{rem_geometry_evolution}, let $\mfld$ be a compact Kähler manifold with Kähler structure defined by the Kähler pair $(\sform, J_0)$, and let $\phi_\tau$ be the complex-time flow of the Hamiltonian vector field $X_H \in \vf^\ra(\mfld)$ for some $H \in C^\ra(\mfld)$. Then we obtain a nontrivial path in $\kset(\mfld)$ for $\tau = is$. 
+\end{rem}
+
+\begin{thm}[Theorem 9.1, \cite{mourao_complexified_2015}] \label{thm_complex_flow_geodesics}
+	Let $\mfld$ be a compact manifold and let $(\sform, \cstruct_0) \in \kset(\mfld)$. Let $H \in C^\ra(\mfld)$ and $X_H \in \vf^\ra(\mfld)$ be an analytic and real Hamiltonian vector field. Consider its complex flow $\phi_\tau$ such that it is defined for $\tau \in D_T=\{\tau \in \cmplx : \abs{\tau} < T\}$, $T \in \reals^+$ . Define $\sform_\tau := \left( \phi_\tau^{-1} \right)^* \sform$ and consider all such forms for $\tau = it, 0 \leq t < T$. Then $\{\sform_{it}\}_{t \in [0,T[}$ corresponds to a geodesic path in $\fcpset(\sform, J_0)$.
+\end{thm}
+
+\subsection{Kähler toric manifolds and Guillemin-Abreu theory} \label{sec_coordinates}
+
+	Here we introduce the action-angle and toric holomorphic coordinate formalisms following mainly \cite{abreu_kahler_2003}.
+
+	\begin{defn} \label{def_ktoric_action}
+		A \emph{Kähler toric manifold} is a closed, connected $2n$-dimensional Kähler manifold $(\mfld,\sform,\cstruct)$ with a Hamiltonian toric action
+		\begin{align*}
+			\tact:\torus^n\to\diff(\mfld,\sform,\cstruct),
+		\end{align*}
+		which is both effective and holomorphic with respect to the complex structure $J$.
+	\end{defn}
+
+	% A Kähler toric manifold is, in particular, a complex toric variety (see \cite{danilov_geometry_1978, fulton_introduction_1993}), and thus contains as a dense and open subset a complex torus $\torus^n_\cmplx = \cmplx^n / 2 \pi i \ints^n$ 
+
+	Throughout this section, $(\mfld,\sform,\cstruct,\tact)$, will denote a Kähler toric manifold as above. Since $\tact$ is Hamiltonian, associated to it there is a moment map, which we will denote by $\mmap: \mfld \to \reals^n$. Let $P^\circ$ be the interior of $P := \mmap(\mfld)$.
+	
+	
+	We start by describing toric holomorphic coordinates $v + i \theta$. In these coordinates, the action $\tact$ is such that $\tact(t) (v+i\theta)=v+i(\theta+t), t \in \torus^n$. The Kähler form is given by a $\torus^n$-invariant potential $\kpot \in C^\infty(\mfld^\circ)$ such that $\sform = 2i\hd \ahd \kpot$ and
+	\begin{align*}
+		\tilde{\cstruct} = \begin{bmatrix}
+			0 & \vdots & - I \\
+			\cdots & \cdots & \cdots \\
+			I & \vdots & 0
+		\end{bmatrix}, \;
+		\tilde{\sform} = \begin{bmatrix}
+			0 & \vdots & \Hess_v(\kpot) \\
+			\cdots & \cdots & \cdots \\
+			-\Hess_v(\kpot) & \vdots & 0
+		\end{bmatrix}, \;
+		\tilde{\metric} = \tilde{\sform} \tilde{\cstruct} = \begin{bmatrix}
+			\Hess_v(\kpot) & \vdots & 0\\
+			\cdots & \cdots & \cdots \\
+			0 & \vdots & \Hess_v(\kpot)
+		\end{bmatrix}.
+	\end{align*}
+	where $\Hess_v(\kpot) := [\kpot_{jk}]_{j,k=1}^{n,n}, \kpot_{jk}=\frac{\partial^2 \kpot}{\partial v_j \partial v_k}, 1 \leq j,k \leq n$ and $\tilde \cstruct, \tilde \metric$ and $\tilde \sform$ are local matrix representations.
+
+	Let us denote the action-angle coordinates by $(u,\theta)$. The crucial point is that we can find a so-called \emph{symplectic potential} $\sgen \in C^\infty(P^\circ)$ which is the Legendre transform of $\kpot$ in the following sense
+	\begin{align} \label{eq_legendre_transform}
+		\kpot(v) + \sgen(u) = \sum_{j}\ppd{\kpot}{v_j}(v) \cdot \ppd{\sgen}{u_j}(u),\text{ evaluated at } u = \ppd{\kpot}{v} \text{ or } v = \ppd{\sgen}{u}.
+	\end{align}
+	Thus, one has that $u = \frac{\partial \kpot}{\partial v}(v)$ and $v = \frac{\partial \sgen}{\partial u}(u)$.
+
+	In action-angle coordinates, $\tact$ takes the form $\tact(t)(u,\theta) = (u,\theta+t), t \in \torus^n$,	and
+	\begin{align*} \label{eq_sform_aa}
+		\hat{\sform} = \begin{bmatrix}
+			0 & \vdots & I\\
+			\cdots & \cdots & \cdots \\
+			-I & \vdots & 0
+		\end{bmatrix},
+		\hat{\cstruct} = \begin{bmatrix}
+			0 & \vdots & -\Hess_u(\sgen)^{-1}\\
+			\cdots & \cdots & \cdots \\
+			\Hess_u(\sgen) & \vdots & 0
+		\end{bmatrix},
+		\hat{\metric} = \hat{\sform} \hat{J} = \begin{bmatrix}
+			\Hess_u(\sgen) & \vdots & 0\\
+			\cdots & \cdots & \cdots \\
+			0 & \vdots & \Hess_u(\sgen)^{-1}
+		\end{bmatrix},
+	\end{align*}
+	where $\Hess_u(\sgen) = [\sgen_{j,k = 1}^{n,n}],  \sgen_{jk}=\frac{\partial^2 \sgen}{\partial u_j \partial u_k}, 1 \leq j,k \leq n$ and $\hat \cstruct, \hat \metric$ and $\hat \sform$ are local matrix representations.
+\subsection{Coherent State Transforms} \label{sec_lifting}
+Let $\pol_0$ be a polarization on the quantizable symplectic manifold $(\mfld, \sform)$, as introduced in \secref{sec_gq}. Assuming that there are no convergence issues for the relevant values of $\tau \in \cmplx$, we wish to find a map
+\[V_\tau: \hilb^{\text{hf}}_{\pol_0} \to \hilb^{\text{hf}}_{\pol_\tau},\]
+where $\pol_\tau := e^{\tau \lied{X_H}}\pol_0$ and $\hilb^{\text{hf}}_{\pol_0}, \hilb^{\text{hf}}_{\pol_\tau}$ are as in 
+\eqref{eq_reduced_hilb_whf}. This map will be a \emph{GCST (generalized coherent state transform)}, or \emph{KSH (Konstant-Souriau-Heisenberg) map} associated to $H$ (see \cite{kirwin_complex_2013}), which takes the form
+\begin{equation} \label{eq_cst_def}
+U_s := \left ( e^{-\frac{i}{\hbar} \tau \prqhf{H}} \circ e^{\frac{i}{\hbar} \tau \q{H}} \right )\big|_{\tau = is},
+\end{equation}
+where $\prq{H}$ corresponds to the prequantization of $H$ (as in \eqref{eq_prq_whf}) and $\q{H}$ is the quantization of $H$ (see \remref{rem_full_quantization}). From Section 4.4 and Remark 4.26 of \cite{kirwin_complex_2013}, we see that:
+\begin{thm} \label{thm_gcst_asymp_unitarity}
+	Let $\pol_0$ be a toric Kähler polarization on the quantizable toric symplectic manifold $(\mfld, \sform)$ with associated moment map $\mu$. Let $H \in C^\ra(\mfld)$ be toric and strictly convex as a function of $\mu$, and let $U_s$ be the GCST associated to $H$ as in \eqref{eq_cst_def}. Then $U_{s}$ is asymptotically unitary as $\hbar \to 0$.
+\end{thm}
+\begin{rem} \label{rem_gcst_interpretation}
+	We can interpret $U_s$ as follows: the factor $e^{\frac{i}{\hbar} \tau \q{H}}$ corresponds to quantum evolution while the factor $e^{-\frac{i}{\hbar} \tau \prqhf{H}}$ is associated to an exact lifting of classical evolution in complex time. Thus, one can interpret the lack of unitarity of this map as due to a difference between the two types of evolution.
+\end{rem}
+
+% \begin{rem}
+% 	Let $A \subseteq C^\infty(\mfld) \otimes \cmplx$. Then, for $f \in A$, $e^{-\frac{i}{\hbar} \tau \prq{H}}: \hilb{\pol_0} \to \hilb_{\pol_\tau}$ and $e^{\frac{i}{\hbar} \tau \q{H}}: \hilb{\pol_0} \to \hilb_{\pol_0}$. 
+% 	In light of Schur's lemma, the representation on $\hilb_{\pol_\tau}^Q$ obtained as
+% 	\begin{align*}
+% 		g \mapsto V_\tau^f \circ \rep_{\pol_0}(g)\circ (V_{\tau}^f)^{-1}
+% 	\end{align*}
+% 	is not a $*$-representation or in other words, the discrepancy between classical and quantum evolution in the two factors of $V_f$ may spoil the star relations of the representation of $A$ in $\hilb_{\pol_\tau}^Q$
+% \end{rem}
+
+% Schur's lemma
+% \begin{lem}
+% 	Let $(H,\rho_1)$ be two irreducible $*$-representations of the $*$-algebra $A$ and $V$
+% 	\begin{align*}
+% 		V:\hilb_1 \to \hilb_2
+% 	\end{align*}
+% 	a linear operator intertwining them. Then $V$ is projectively unitary.
+% \end{lem}
+
+
+% \begin{ex}
+% In \cite{hall_segal-bargmann_1994}, Hall constructed a unitary transform for Lie groups of compact type $G$.
+
+% \begin{align*}
+% 	U:L^2(G, dx) &\to \holo L^2(G_\cmplx, d\nu(g)) \\
+% 	U &= \left (\mathcal{C} \circ e^{\frac{\Delta}{2}} \right )
+% \end{align*}
+
+% For the specific case $G = \reals$, $M=T^*\reals \cong \reals^2$
+
+% \begin{align*}
+% U:L^2(\reals, dq) &\to \mathcal{H}L^2(\cmplx, e^{-p^2} dpdq) \\
+% U &= \left (\mathcal{C} \circ e^{\frac{\Delta}{2}} \right ) \\
+% \psi(q) &\mapsto \left (e^\frac{\Delta}{2} \right )(q+ip)
+% \end{align*}
+% For $H=\frac{p^2}{2}$, $X_H=p \pd{q}$ and thus $e^{\tau X_H} \big|_{t=i} = (q + t p) \big|_{t=i} = z$. Hence, 
+% \begin{align*}
+% 	\mathcal{C} = e^{iX_H}
+% \end{align*}.
+
+% Since $\prq{H} = i X_H - \frac{p^2}{2}$ , \[e^{-it\prq{H}}\big|_{t=-is} = \mathcal{C} \circ e^{-\frac{p^2}{2}}.\]
+ 
+% Since $\q{H} = H(\q{p})$ and $\q{p} = -i\pd{q}$ ,
+
+% \[e^{-it\prq{H}}\big|_{t=-is} = \mathcal{C} \circ e^{-\frac{p^2}{2}}.\]
+% \[e^{it \q{H}}\big|_{t=-is} = e^\frac{\Delta}{2}.\]
+% Thus, the Hall CST is equivalent the transform lifting the complex canonical transfrmation $e^{\tau X_{H}|_{\tau=i}}=e^{i p \pd{q}}$ 
+% \begin{align*}
+% 	\hilb_\sch^Q = \hilb_q^Q &\to^{C^{iH}} \hilb_z^Q=H_\fock^Q \\
+% U &= \left (\mathcal{C} \circ e^{\frac{\Delta}{2}} \right ) = \left (e^{-it\prq{H}} \circ e^{it \q{H}}\right )\big|_{t=-is}
+% \end{align*} 
+% where $e^{-\frac{p^2}{2}}$ is absorbed into the averaged heat kernel measure.
+% \end{ex}
+\end{document}

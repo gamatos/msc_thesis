@@ -1,0 +1,58 @@
+% Basic math definitions
+% -----------
+% Arbitrary field of scalars
+\newcommand*{\field}{\mathbb{K}}
+% Real numbers
+\newcommand*{\reals}{\mathbb{R}}
+% Rational numbers
+\newcommand*{\rats}{\mathbb{Q}}
+% Complex numbers
+\newcommand*{\cmplx}{\mathbb{C}}
+% Natural numbers
+\newcommand*{\nats}{\mathbb{N}}
+% Integers
+\newcommand*{\ints}{\mathbb{Z}}
+% Hilbert space
+\newcommand*{\hilb}{\mathcal{H}}
+% Linear span
+\DeclareMathOperator{\lspan}{span}
+% Inner product
+\newcommand*{\inner}[2]{\langle #1,#2 \rangle}
+% Absolute value
+\newcommand*{\abs}[1]{\left|#1\right|}
+% Identity
+\newcommand*{\id}{\text{id}}
+% Norm
+\newcommand*{\norm}[1]{\left\lVert#1\right\rVert}
+% Closure
+\newcommand*{\close}[1]{\overline{#1}}
+% Modulus
+\newcommand*{\modulus}[1]{\text{ mod }}
+% Trace
+\DeclareMathOperator{\trace}{Tr}
+
+% Error function
+\DeclareMathOperator{\erf}{erf}
+
+% Comment related commands
+\newcommand*{\matos}{\textcolor{blue}}
+\newcommand*{\matosc}{\textcolor{brown}}
+\newcommand*{\matosi}{\textcolor{red}}
+\newcommand*{\prof}{\textcolor{purple}}
+
+% Signal presence of definition
+\newcommand*{\dih}{\textcolor{blue}}
+
+
+% Image of function
+\DeclareMathOperator{\image}{im}
+% Imaginary part
+\DeclareMathOperator{\imaginary}{Im}
+
+% Redefinition to add space to \forall
+\let\ForAll\forall
+\renewcommand\forall{\ForAll\;}
+
+% Redefinition to add space to \circ
+\let\Circ\circ
+\renewcommand\circ{\Circ\,}

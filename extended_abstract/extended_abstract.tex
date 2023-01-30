@@ -1,0 +1,152 @@
+\documentclass[a4paper]{article}
+
+
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{subfiles}
+
+\usepackage{packages/thesis}
+
+\usepackage{multirow}
+
+\usepackage{tikz-cd}
+
+%comments -> this are to be removed at the end
+\usepackage{todonotes}
+\usepackage{verbatim}
+
+% Other packages
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+	\usepackage{thmtools}
+\usepackage{bm}
+%\usepackage{cite}
+\usepackage{enumerate, enumitem}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+	\usepackage{cleveref}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{tensor}
+\usepackage{tikz}
+	\usetikzlibrary{cd}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage[all]{xy}
+
+\usepackage{subfig}
+
+%\usepackage{natbib}
+
+\usepackage{indentfirst}
+
+\usepackage[%
+    style=trad-alpha,sorting=none,
+    sortcites=true,doi=false,isbn=false,url=false,
+    giveninits=true,hyperref, sorting=nyt]{biblatex}
+
+% Define how to create theorems, etc
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exerc}[thm]{Exercise}
+
+% Set how to refer to various entities
+\newcommand{\secref}[1]{Section \ref{#1}}
+\newcommand{\figref}[1]{Figure \ref{#1}}
+\newcommand{\tableref}[1]{Table (\ref{#1})}
+\newcommand{\equationref}[1]{Equation (\ref{#1})}
+\newcommand{\thmref}[1]{Theorem \ref{#1}}
+\newcommand{\defref}[1]{Definition \ref{#1}}
+\newcommand{\lemref}[1]{Lemma \ref{#1}}
+\newcommand{\propref}[1]{Proposition \ref{#1}}
+\newcommand{\corref}[1]{Corollary \ref{#1}}
+\newcommand{\remref}[1]{Remark \ref{#1}}
+\newcommand{\exref}[1]{Example \ref{#1}}
+
+%\newcommand\myshade{85}
+\colorlet{mylinkcolor}{WildStrawberry}
+\colorlet{mycitecolor}{Green}
+\colorlet{myurlcolor}{YellowOrange}
+
+\hypersetup{
+  linkcolor  = mylinkcolor,%!\myshade!black,
+  citecolor  = mycitecolor,%!\myshade!black,
+  urlcolor   = myurlcolor,%!\myshade!black,
+  colorlinks = true,
+}
+
+\title{Geometry dependence of quantum Hall states on surfaces}
+\author{Gabriel Matos}
+\date{July 2019}
+%\subjclass[2010]{81V70, 81S10, 53D50, 53Z05}
+%\keywords{Geometric quantization, complexified Hamiltonian flow, generalized coherent state transform, fractional quantum Hall effect}
+
+\input{../latex_commands/general}
+\input{../latex_commands/geometry_mathphys}
+
+\bibliography{../bib/bibliography}
+\AtEveryBibitem{\clearfield{month}}
+
+\graphicspath{{../img/}{../../img/}}
+
+\makeindex
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
+\setlist{nolistsep}
+
+\captionsetup[subfigure]{labelformat=empty}
+
+\begin{document}
+
+%\subfile{cover}
+
+%\clearpage \pagenumbering{gobble} \mbox{}\clearpage
+
+%\pagenumbering{roman}
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+
+\maketitle
+
+\subfile{files/abstract_eng}
+%\subfile{files/abstract_pt}
+
+%\tableofcontents
+%\listoffigures
+%\pagebreak
+
+
+
+%\subfile{acknowledgements}
+%\subfile{introduction}
+\subfile{files/preliminaries}
+\subfile{files/examples}
+\subfile{files/conclusion}
+
+%put the books without citation on bibliography
+%\nocite{*}
+%\setlength{\bibsep}{0.0pt}
+\begingroup
+\setlength\bibitemsep{0pt}
+{\small
+\printbibliography
+}
+\endgroup
+%\small{\bibliography{art, ref}}
+%\bibliographystyle{alpha}
+
+%\subfile{appendix}%
+
+\end{document}

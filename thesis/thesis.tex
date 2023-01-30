@@ -1,0 +1,150 @@
+\documentclass[a4paper]{report}
+
+
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{subfiles}
+
+\usepackage{packages/thesis}
+
+\usepackage{multirow}
+
+\usepackage{tikz-cd}
+
+%comments -> this are to be removed at the end
+\usepackage{todonotes}
+\usepackage{verbatim}
+
+% Other packages
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+	\usepackage{thmtools}
+\usepackage{bm}
+\usepackage{enumerate, enumitem}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+	\usepackage{cleveref}
+\usepackage{mathtools}
+\usepackage{soul}
+\usepackage{tensor}
+\usepackage{tikz}
+	\usetikzlibrary{cd}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage[all]{xy}
+
+\usepackage{indentfirst}
+
+\usepackage[%
+    style=trad-alpha,sorting=none,
+    sortcites=true,doi=false,isbn=false, url=false,
+    giveninits=true,hyperref, sorting=nyt]{biblatex}
+
+% Define how to create theorems, etc
+\theoremstyle{definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{exerc}[thm]{Exercise}
+
+% Set how to refer to various entities
+\newcommand{\secref}[1]{Section \ref{#1}}
+\newcommand{\figref}[1]{Figure \ref{#1}}
+\newcommand{\tableref}[1]{Table (\ref{#1})}
+\newcommand{\equationref}[1]{Equation (\ref{#1})}
+\newcommand{\thmref}[1]{Theorem \ref{#1}}
+\newcommand{\defref}[1]{Definition \ref{#1}}
+\newcommand{\lemref}[1]{Lemma \ref{#1}}
+\newcommand{\propref}[1]{Proposition \ref{#1}}
+\newcommand{\corref}[1]{Corollary \ref{#1}}
+\newcommand{\remref}[1]{Remark \ref{#1}}
+\newcommand{\exref}[1]{Example \ref{#1}}
+
+% URL/Link/Citation colors
+\colorlet{mylinkcolor}{WildStrawberry}
+\colorlet{mycitecolor}{Green}
+\colorlet{myurlcolor}{YellowOrange}
+
+\hypersetup{
+  linkcolor  = mylinkcolor,%!\myshade!black,
+  citecolor  = mycitecolor,%!\myshade!black,
+  urlcolor   = myurlcolor,%!\myshade!black,
+  colorlinks = true,
+}
+
+\input{../latex_commands/general}
+\input{../latex_commands/geometry_mathphys}
+
+\bibliography{../bib/bibliography}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryBibitem{%
+  \clearlist{language}%
+}
+
+\renewbibmacro*{journal}{%
+  \ifboolexpr{ test {\ifcitation} and not test {\iffieldundef{shortjournal}} }
+    {\printfield[journaltitle]{shortjournal}}
+    {\iffieldundef{journaltitle}
+       {}
+       {\printtext[journaltitle]{%
+          \printfield[titlecase]{journaltitle}%
+          \setunit{\subtitlepunct}%
+          \printfield[titlecase]{journalsubtitle}}}}}
+
+%\bibliographystyle{alpha}
+
+\graphicspath{{../img/}{../../img/}}
+
+\makeindex
+
+\begin{document}
+
+\subfile{files/cover}
+
+\clearpage \pagenumbering{gobble} \mbox{}\clearpage
+
+\subfile{files/abstract_eng}
+\newpage
+\subfile{files/abstract_pt}
+
+\pagenumbering{gobble} \mbox{}\clearpage
+
+\pagenumbering{roman}
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\tableofcontents
+
+\listoffigures
+%\listoftables
+\pagebreak
+ 
+\subfile{files/abbreviations}
+\newpage
+\subfile{files/acknowledgements}
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\subfile{files/introduction}
+\newpage
+\subfile{files/preliminaries}
+\newpage
+\subfile{files/examples}
+\newpage
+\subfile{files/conclusion}
+
+%put the books without citation on bibliography
+%\nocite{*}
+\printbibliography
+\pagebreak
+
+%\subfile{appendix}%
+
+\end{document}
